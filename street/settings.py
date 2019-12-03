@@ -29,8 +29,8 @@ SECRET_KEY = '*h$03&f=t4iaq#(dplnkk1_ls08xq2jw_d6n%=i&)$#!x$^jb*'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'neknu.pythonanywhere.com',
+    '127.0.0.1'
+    'http://neknu.pythonanywhere.com/'
 ]
 
 
