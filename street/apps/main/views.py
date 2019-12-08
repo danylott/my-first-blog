@@ -26,6 +26,7 @@ def search_ajax(request):
         searchName = request.GET['searchName']
         street = actual_streets(searchDate)
         street = street.filter(Q(name__icontains=searchName) | Q(streetalternativename__name__icontains=searchName))
+        street = street.distinct()
         # street = street[:100]
         # count_of_segments = []
         # for str in street:
