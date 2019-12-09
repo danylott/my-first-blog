@@ -1,4 +1,4 @@
-from django.contrib.gis import admin
+from django.contrib import admin
 from django.db import models
 from .models import *
 
@@ -66,7 +66,7 @@ class AdminSegmentStreet(admin.ModelAdmin):
 #     search_fields = ['new', 'old']
 #     ordering = ('id',)
 
-class AdminSegment(admin.OSMGeoAdmin):
+class AdminSegment(admin.ModelAdmin):
     list_display = ['id', 'district', 'description']
     fieldsets = [
         (None,               {'fields': ['description']}),

@@ -2,7 +2,7 @@ from datetime import datetime, date
 from dictionaries.models import *
 from .models import *
 from django.db.models import Q
-from django.contrib.gis.db import models
+from django.db import models
 
 class StreetAlternativeName(models.Model):
     name = models.CharField('Назва вулиці', max_length= 100, blank=True, null=True)
@@ -77,7 +77,6 @@ class Segment(models.Model):
     geom_type = models.ForeignKey(DictStreetGeomType, models.DO_NOTHING, blank=True, null=True)
     tract_mtz = models.ForeignKey(DictStreetTract, models.DO_NOTHING, blank=True, null=True)
     operation = models.ManyToManyField('self', through='OperationSegment', symmetrical=False)
-    geom = models.MultiLineStringField(srid=4326)
 
     class Meta:
 
