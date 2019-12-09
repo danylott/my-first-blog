@@ -71,7 +71,7 @@ class AdminSegment(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['description']}),
         ('Дані з довідників', {'fields': ['district', 'geom_type', 'tract_mtz']}),
-        ('Геометрія', {'fields': ['geom']}),
+
     ]
     list_filter = ['district']
     search_fields = ['id']
