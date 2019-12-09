@@ -29,6 +29,8 @@ def search_ajax(request):
         count_of_segments = []
         for str in street[:100]:
             count_of_segments.append(str.count_segments_by_date(searchDate))
+
+        street.distinct()
         street_list = list(street.values_list('id', 'name', 'type__name'))
         response = {'street_list': street_list, 'count_of_segments': count_of_segments}
         return JsonResponse(response, safe=False)
