@@ -31,6 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'neknu.pythonanywhere.com',
+    '192.168.1.9',
 ]
 
 
@@ -127,6 +128,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
