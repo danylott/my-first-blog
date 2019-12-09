@@ -129,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
+# SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
