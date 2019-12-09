@@ -26,25 +26,39 @@ def search_ajax(request):
         searchName = request.GET['searchName']
         street = actual_streets(searchDate)
         street = street.filter(Q(name__icontains=searchName) | Q(streetalternativename__name__icontains=searchName))
-        street = street.distinct()
-        # street = street[:100]
-        # count_of_segments = []
-        # for str in street:
-        #     count_of_segments.append(str.count_segments_by_date(searchDate))
+        count_of_segments = []
+        for str in street[:100]:
+            count_of_segments.append(str.count_segments_by_date(searchDate))
         street_list = list(street.values_list('id', 'name', 'type__name'))
-        # response = {'street_list': street_list, 'count_of_segments': count_of_segments}
-        return JsonResponse(street_list, safe=False)
+        response = {'street_list': street_list, 'count_of_segments': count_of_segments}
+        return JsonResponse(response, safe=False)
     else:
         raise Http404
 
+def segments_by_date(street, date):
+    segment_list = Segment.objects.filter(
+        Q(street__id=street.id),
+        Q(segmentstreet__date_start__lt = date)|Q(segmentstreet__date_start=None),
+        Q(segmentstreet__date_end__gte = date)|Q(segmentstreet__date_end=None),
+    )
+    return segment_list
+
 def detail(request, street_id):
     street = Street.objects.get(id = street_id)
-    segment_list = Segment.objects.filter(
-        Q(street__id=street_id),
-        Q(segmentstreet__date_start__lt = date.today())|Q(segmentstreet__date_start=None),
-        Q(segmentstreet__date_end__gte = date.today())|Q(segmentstreet__date_end=None),
-    )
-    return render(request, 'main/detail.html', {'street': street, 'segment_list': segment_list})
+    segment_list = segments_by_date(street, date.today())
+    return render(request, 'main/detail.html', {'street': street, 'segment_list': segment_list, 'segment_count': segment_list.count(), 'date_now': str(date.today())})
+
+def detail_ajax(request):
+    if request.is_ajax():
+        searchDate = request.GET['searchDate']
+        if not searchDate:
+            searchDate = date.today()
+        street = Street.objects.get(id = request.GET['streetId'])
+        segment = segments_by_date(street, searchDate)
+        segment_list = list(segment.values_list('id', 'district__name'))
+        return JsonResponse(segment_list, safe=False)
+    else:
+        raise Http404
 
 #Осторожно : Писал Германюк!!!
 def free_segments(request):

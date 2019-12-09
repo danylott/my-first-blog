@@ -71,7 +71,6 @@ class AdminSegment(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['description']}),
         ('Дані з довідників', {'fields': ['district', 'geom_type', 'tract_mtz']}),
-
     ]
     list_filter = ['district']
     search_fields = ['id']
@@ -89,6 +88,7 @@ class AdminDocumentsStreet(admin.ModelAdmin):
     inlines = ( OperationStreetInline, OperationSegmentInline, OperationSegmentStreetInline, )
     ordering = ('id',)
 
+
 admin.site.register(Street, AdminStreet)
 admin.site.register(SegmentStreet, AdminSegmentStreet)
 # admin.site.register(OperationStreet, AdminOperationStreet)
@@ -97,3 +97,6 @@ admin.site.register(SegmentStreet, AdminSegmentStreet)
 admin.site.register(DocumentsStreet, AdminDocumentsStreet)
 admin.site.register(StreetAlternativeName)
 admin.site.register(Segment, AdminSegment)
+admin.site.site_header = "UMSRA Admin"
+admin.site.site_title = "UMSRA Admin Portal"
+admin.site.index_title = "Welcome to UMSRA Researcher Portal"

@@ -5,6 +5,7 @@ from . import views
 app_name = 'main'
 urlpatterns = [
     path('', views.search, name='search'),
-    path('ajax/', views.search_ajax, name = 'search_ajax'),
+    path('search_ajax/', views.search_ajax, name = 'search_ajax'),
+    path('detail_ajax/', views.detail_ajax, name = 'detail_ajax'),
     path('<int:street_id>/', views.detail, name='detail'),
 ]

@@ -3,30 +3,50 @@
 
 {% block content %}
 
-<div class="well">
-    <h4 style="margin-top: 0">Вулиця: {{ street.name }}</h4>
-</div>
+  <div class="w3-black w3-bar w3-center">
+    <h2>Вуличний об'єкт: {{ street.name }}</h2>
+    <input class="w3-hide" id="streetId" value="{{ street.id }}">
+  </div>
 
-  <h4>Перелік сегментів:</h4>
+  <div class="w3-row-padding w3-padding-large">
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Район</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for segment in segment_list %}
-      <tr>
-        <td>{{ segment.id }}</td>
-        <td>{{ segment.district }}</td>
-      </tr>
-    {% empty %}
-      <tr>
-        <td colspan="5">No data</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+    <div class="w3-third">
+      <a class="w3-btn w3-black w3-left" href="{% url 'main:search' %}"><i class="fas fa-arrow-left"></i><span>На головну</span></a>
+    </div>
+
+
+    <div class="w3-third">
+      <input id="searchDate" class="w3-input" type="date"  max="{{ date_now }}" name="date" value="{{ date_now }}">
+    </div>
+
+    <div class="w3-third w3-center">
+      <p id="countSegments" class="w3-large w3-padding">Кількість сегментів: {{ street.count_segments_by_date }}</p>
+    </div>
+
+    </div>
+
+    <table id = "segments" class="w3-table-all">
+      <thead>
+       <tr class="w3-black">
+         <th>Номер у б/д</th>
+         <th>Район</th>
+       </tr>
+     </thead>
+
+      {% for segment in segment_list %}
+        <tr>
+          <td>{{ segment.id }}</td>
+          <td>{{ segment.district }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">Вулиці відсутні!</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    {% load static %}
+    <script src="{% static 'js/segment.js' %}"></script>
+
 {% endblock %}
