@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% load static %}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body, html {
+        background-image: url("{% static "images/background.jpg" %}");
+        background-size: auto;
+        height: 100%;
+        margin: 0;
+}
+</style>
+<body>
+    <meta charset="UTF-8">
+    <title>Santa 2020</title>
+    {% block content %}
+    {% endblock %}
+</body>
