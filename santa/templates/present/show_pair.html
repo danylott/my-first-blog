@@ -1,5 +1,6 @@
 {% extends 'present/base.html' %}
 
+{% load static %}
 {% block content %}
     <div class="w3-content">
         <div class="w3-center">
@@ -14,7 +15,7 @@
             <li>Сложить подарки вместе возле ёлки</li>
         </ul>
         <div class="w3-center">
-            <img src="/media/images/chill_santa.jpg" style="width: 60%" alt="">
+            <img src="{% static "present/images/chill_santa.jpg" %}" style="width: 60%" alt="">
         </div>
     </div>
 

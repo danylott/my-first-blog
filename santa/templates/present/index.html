@@ -1,11 +1,12 @@
 {% extends 'present/base.html' %}
 
+{% load static %}
 {% block content %}
     <div class="w3-xxxlarge w3-center" >Санта 2020</div>
     <div class="w3-content">
     <div class="w3-row-padding">
         <div class="w3-half">
-            <img src="/media/images/santa.png" style="width: 90%" alt="santa">
+            <img src="{% static "present/images/santa.png" %}" style="width: 90%" alt="santa">
         </div>
         <div class="w3-half">
         <h2><b>Учасники:</b></h2>
